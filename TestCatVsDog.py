@@ -9,6 +9,8 @@ model2 = tf.keras.models.load_model('cat_vs_dog.h5')
 model2.summary()
 
 path = 'Images/cat10.jpg'
+cats = []
+dogs = []
 
 for filename in os.listdir('Images'):
     img = image.load_img('Images/' + filename, target_size=(200, 200))
@@ -17,9 +19,10 @@ for filename in os.listdir('Images'):
 
     images = np.vstack([x])
     classes = model2.predict(images, batch_size=10)
-
-    print(filename + ' was:')
     if classes[0] > 0.5:
-        print("dog with class: " + str(classes[0]))
+        dogs.append(filename + ' ' + str(classes[0]))
     else:
-        print("cat with class: " + str(classes[0]))
+        cats.append(filename+' ' + str(classes[0]))
+
+print('Cats: ' + str(cats))
+print('Dogs: ' + str(dogs))

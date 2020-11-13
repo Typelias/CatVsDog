@@ -71,7 +71,7 @@ validation_datagen = ImageDataGenerator(rescale=1.0 / 255.)
 validation_generator = validation_datagen.flow_from_directory(VALIDATION_DIR, batch_size=64, class_mode='binary',
                                                               target_size=(200, 200))
 
-history = model.fit(train_generator, epochs=40, verbose=1, validation_data=validation_generator)
+history = model.fit(train_generator, epochs=50, verbose=1, validation_data=validation_generator)
 
 model.save('saved_model/CatVsDog_Model')
 model.save('cat_vs_dog.h5')
